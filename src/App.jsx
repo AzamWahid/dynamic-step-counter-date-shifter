@@ -16,22 +16,23 @@ function App() {
 
   function stepIncrDescr(type) {
     if (type == 'add') {
-      setsteps((step) => step+1);
+      setsteps((step) => step + 1);
     }
     else if (type == 'less') {
-      setsteps((step) =>  step != 0 ? step - 1 : 0);
+      setsteps((step) => step != 0 ? step - 1 : 0);
     }
   }
 
-    function countIncrDescr(type) {
+  function countIncrDescr(type) {
+    let newCount;
     if (type == 'add') {
-      setcounts((count) => count+ steps);
+      newCount = counts + steps;
     }
     else if (type == 'less') {
-      setcounts((count) => count - steps);
+     newCount = counts - steps;
     }
-     AddDaysInDate(counts)
-
+    setcounts(newCount);
+    AddDaysInDate(newCount);
   }
 
   return (
@@ -42,14 +43,13 @@ function App() {
       <button onClick={() => countIncrDescr('add')}>+</button> Count : {counts} <button onClick={() => countIncrDescr('less')}>-</button>
       <br />
 
-      <button onClick={AddDaysInDate}>step</button>
 
 
 
       <br />
 
 
-      {currDate.toString()}
+     {counts} day from today date  {currDate.toString()}
     </>
   )
 }
