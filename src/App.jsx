@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import CustomizedSlider from './ValueLabelComponent';
 
 function App() {
   const [currDate, setCurrDate] = useState(new Date());
@@ -30,6 +31,10 @@ function App() {
     setCounts(newCount);
     AddDaysInDate(newCount);
   }
+  const handleSliderChange = (event, newValue) => {
+    setCounts(newValue);
+    AddDaysInDate(counts);
+  };
 
   return (
     <div className="container">
@@ -46,6 +51,11 @@ function App() {
 
       <div className="control">
         <h2>Count Control</h2>
+
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+          <CustomizedSlider value={counts} onChange={handleSliderChange} />
+        </div>
+
         <div className="button-group">
           <button onClick={() => countIncrDescr('less')}>-</button>
           <span>{counts}</span>
