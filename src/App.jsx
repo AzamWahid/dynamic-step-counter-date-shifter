@@ -6,6 +6,7 @@ function App() {
   const [currDate, setCurrDate] = useState(new Date());
   const [steps, setSteps] = useState(1);
   const [counts, setCounts] = useState(0);
+  const [prevSlider, setPrevSlider] = useState(0); 
 
   function AddDaysInDate(noOfChange) {
     const nextDate = new Date();
@@ -32,8 +33,13 @@ function App() {
     AddDaysInDate(newCount);
   }
   const handleSliderChange = (event, newValue) => {
-    setCounts(newValue);
-    AddDaysInDate(counts);
+    if (newValue > prevSlider) {
+      countIncrDescr('add');
+    } else if (newValue < prevSlider) {
+      countIncrDescr('less');
+    }
+
+    setPrevSlider(newValue);   // Track current slider value
   };
 
   return (
